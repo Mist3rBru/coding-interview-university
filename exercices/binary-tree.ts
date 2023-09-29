@@ -1,18 +1,14 @@
-interface NodeTree {
+export interface NodeTree {
   value: number | undefined
-  left: NodeTree | undefined
-  right: NodeTree | undefined
+  left?: NodeTree | undefined
+  right?: NodeTree | undefined
 }
 
-class BinaryTree {
+export class BinaryTree {
   public root: NodeTree = this.create()
 
   private create(value?: number): NodeTree {
-    return {
-      value,
-      left: undefined,
-      right: undefined,
-    }
+    return { value }
   }
 
   private get(value: number, node: NodeTree): NodeTree {
@@ -49,21 +45,3 @@ class BinaryTree {
     }
   }
 }
-
-function main(): void {
-  const tree = new BinaryTree()
-
-  const insertList = [
-    -8, 19, -12, 5, -25, 11, 28, -15, 3, 22, -7, 9, -18, 16, -29, 2, 26, -20,
-    14, -6, 27, -17, 7, -24, 1, 30, -13, 10, -23, 4,
-  ]
-
-  for (const i of insertList) {
-    tree.insert(i)
-  }
-
-  console.log(tree.root)
-  console.log(tree.find(1))
-}
-
-main()
